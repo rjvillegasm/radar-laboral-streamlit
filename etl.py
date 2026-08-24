@@ -4,8 +4,8 @@ from pathlib import Path
 # ============================================
 # CONFIGURACIÓN 
 # ============================================
-RAW_PATH = Path("raw_data")
-PROCESSED_PATH = Path("clean_data")
+RAW_PATH = Path("raw-data")
+PROCESSED_PATH = Path("clean-data")
 PROCESSED_PATH.mkdir(exist_ok=True) 
 
 # ============================================
@@ -39,7 +39,7 @@ def limpiar_avisos(df):
     """Limpieza para avisos de empleo"""
     
     # Importamos
-    avisos_empleo=pd.read_excel("raw_data/02_avisos_empleo_CRUDO.xlsx",
+    avisos_empleo=pd.read_excel("raw-data/02_avisos_empleo_CRUDO.xlsx",
                                 header=0, sheet_name=0, 
                                 dtype={'Ocupacion CIUO08CL codigo': str})
     
@@ -93,7 +93,7 @@ def limpiar_avisos(df):
 def ejecutar_etl():
     """Ejecuta las transformaciones y guarda los datos procesados"""
     
-    print("🔄 Iniciando ETL...")
+    print(" Iniciando ETL:")
     
     # 1. Cargar y limpiar avisos
     avisos_raw = pd.read_excel(RAW_PATH / "02_avisos_empleo_CRUDO.xlsx", header=0, 
@@ -102,7 +102,7 @@ def ejecutar_etl():
     
     avisos_clean = limpiar_avisos(avisos_raw)
     avisos_clean.to_csv(PROCESSED_PATH / "avisos_clean.csv", index=False)
-    print(f"✅ Avisos: {len(avisos_clean)} registros")
+    print(f" - Avisos: {len(avisos_clean)} registros")
     
     # 2. Cargar y limpiar obras públicas
     obras_raw = pd.read_csv(RAW_PATH / "01_obras_publicas_CRUDO.csv",
@@ -114,19 +114,19 @@ def ejecutar_etl():
                             
     obras_clean = limpiar_obras(obras_raw)
     obras_clean.to_csv(PROCESSED_PATH / "obras_clean.csv", index=False)
-    print(f"✅ Obras: {len(obras_clean)} registros")
+    print(f" - Obras: {len(obras_clean)} registros")
     
     # 3. Cargar datos ya limpios
     
     recomendaciones = pd.read_csv(RAW_PATH / "03_recomendaciones_LIMPIO.csv")
     recomendaciones.to_csv(PROCESSED_PATH / "recomendaciones.csv", index=False)
-    print(f"✅ Recomendaciones: {len(recomendaciones)} registros")
+    print(f" - Recomendaciones: {len(recomendaciones)} registros")
     
     cursos = pd.read_csv(RAW_PATH / "04_cursos_disponibles_LIMPIO.csv")
     cursos.to_csv(PROCESSED_PATH / "cursos.csv", index=False)
-    print(f"✅ Cursos: {len(cursos)} registros")
+    print(f" - Cursos: {len(cursos)} registros")
     
-    print("ETL completado exitosamente")
+    print(" --ETL completado exitosamente--")
 
 # ============================================
 # EJECUCIÓN DIRECTA

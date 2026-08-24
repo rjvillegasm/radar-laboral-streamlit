@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 # Cargar datos
-obras = pd.read_csv("clean_data/obras_clean.csv")
-avisos = pd.read_csv("clean_data/avisos_clean.csv")
+obras = pd.read_csv("clean-data/obras_clean.csv")
+avisos = pd.read_csv("clean-data/avisos_clean.csv")
 
 st.title("Dashboard")
 
