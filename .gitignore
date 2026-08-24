@@ -1,0 +1,10 @@
+venv/
+.venv/
+env/
+.env/
+ENV/
+htmlcov/
+.pytest_cache/
+clean-data/
+.env
+.vscode/
