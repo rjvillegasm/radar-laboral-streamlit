@@ -1,1 +1,1 @@
-ETL y Dashboar en python y streamlit.
+ETL y Dashboard en python y streamlit.
